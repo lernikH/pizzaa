@@ -1,0 +1,18 @@
+
+{% extends 'ingridients/layoud.html' %}
+
+{% block content %}
+<div class="features">
+    <h1>{{ title }}</h1>
+    {% for category, spices in values.items %}
+       <h1><p>{{ category }}</p></h1>
+        <ul>
+            {% for spice in spices %}
+                <li>{{ spice }}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+
+    <a href="{% url 'order' %}" class="btn btn-warning">Պատվիրել</a>
+</div>
+{% endblock %}

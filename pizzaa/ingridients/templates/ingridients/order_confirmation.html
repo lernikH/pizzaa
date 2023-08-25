@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ваша страница</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <!-- Ваш контент страницы -->
+
+    <script>
+        // После загрузки страницы
+        $(document).ready(function() {
+            // Выполняем асинхронный запрос после печати страницы
+            window.onafterprint = function() {
+                $.ajax({
+                    url: '/get_data_from_database/',  // URL вашего Django-представления
+                    type: 'GET',
+                    success: function(response) {
+                        // Обработка данных из базы данных
+                        console.log(response);
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                });
+            };
+        });
+    </script>
+</body>
+</html>
+

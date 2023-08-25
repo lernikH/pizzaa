@@ -1,0 +1,26 @@
+{% extends 'ingridients/layout.html' %}
+
+{% block title %}Выбор специй{% endblock %}
+
+{% block content %}
+<h1>Выберите специи</h1>
+<form method="post" action="{% url 'process_order' %}">
+    {% csrf_token %}
+    <ul>
+        {% for category, spices in values.items %}
+            <li>
+                <h3>{{ category }}</h3>
+                <ul>
+                    {% for spice in spices %}
+                        <li>
+                            <input type="checkbox" name="selected_spices" value="{{ spice }}">
+                            {{ spice }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+    <button type="submit" class="btn btn-warning">Заказать</button>
+</form>
+{% endblock %}
